@@ -1,0 +1,165 @@
+{% extends "cost_calculator_master.html" %}
+
+{% load static %}
+
+
+{% block inside_head %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="{% static 'cal20/file_0.css' %}" rel="stylesheet">
+<link href="{% static 'cal20/file_1.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'cal20/fonts/icomoon/style.css' %}">
+<link href="{% static 'cal20/fullcalendar/packages/core/main.css' %}" rel="stylesheet" />
+<link href="{% static 'cal20/fullcalendar/packages/daygrid/main.css' %}" rel="stylesheet" />
+
+<link rel="stylesheet" href="{% static 'cal20/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'cal20/css/style.css' %}">
+<title>Calendar #10</title>
+
+{% endblock %}
+</head>
+
+{% block inside_body %}
+
+<img  src="{% static 'oprec.png' %}" alt="My image">        
+
+<div id="calendar-container">
+  {% include "navbar.html" %}
+  
+  <table class="card table" style="align-items: center ;margin-bottom: 25px;">
+    <div class="card-body">
+        <tr>
+          <td colspan="5"><h4 class="card-title">Rata-rata bulan ini: </h4></td>
+        </tr>    
+        <tr>
+          <th>BBH</th>
+          <th>Pemasukan</th>
+          <th>Modal</th>
+          <th>Masukan Beras</th>
+          <th>Randemen Beras</th>
+        </tr>
+        <tr>
+          <td>Rp. {{monthly_bbh}}</td>
+          <td>Rp. {{total_monthly_outcomes}}</td>
+          <td>Rp. {{total_monthly_costs}}</td>
+          <td>{{total_incoming_rices}} KG</td>
+          <td>{{total_randemen_beras}}%</td>
+        </tr>
+
+      
+      <!-- <h3 class="card-title">Hello</h3> -->
+    </div>
+  </table>    
+<div id="calendar">
+  
+</div>
+</div>
+
+<script src="{% static 'cal20/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'cal20/js/popper.min.js' %}"></script>
+<script src="{% static 'cal20/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/core/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/interaction/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/daygrid/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/timegrid/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/list/main.js' %}"></script>
+<script>
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }  
+    document.addEventListener("DOMContentLoaded", function() {
+    var calendarEl = document.getElementById("calendar");
+    var calendar_items_str = "{{calendar_items}}";
+    var calendar_items_json = JSON.parse(decodeHtml(calendar_items_str));
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ "interaction", "dayGrid", "timeGrid", "list" ],
+      height: "parent",
+      header: {
+        left: "prev,next today",
+        center: "title",
+        right: "", //  dayGridMonth,timeGridWeek,timeGridDay,listWeek 
+        
+
+      },
+      defaultView: "dayGridMonth",
+      defaultDate: "{{default_day}}",
+      navLinks: true, // can click day/week names to navigate views
+      editable: false,
+      eventLimit: false, // allow "more" link when too many events
+      events: calendar_items_json, // [
+
+        // {
+        //   title: "Income: Rp. 10000000",
+        //   url: "http://google.com/",
+        //   start: "2023-05-08T04:00:00",
+        // },
+        // {
+        //   title: "Cost: Rp. 9700000",
+        //   url: "http://google.com/",
+        //   start: "2023-05-08T08:00:00",
+        // },        
+        // {
+        //   title: "BBH: + 3000000",
+        //   url: "http://google.com/",
+        //   start: "2023-05-08T12:00:00",
+        // },        
+        // {
+        //   title: "Berat beras: 100000KG",
+        //   url: "http://google.com/",
+        //   start: "2023-05-08T16:00:00",
+        // },        
+        // {
+        //   title: "Randemen: 70%",
+        //   url: "http://google.com/",
+        //   start: "2023-05-08T20:00:00",
+        // },        
+          
+      // ]
+    });
+
+    calendar.render();
+  });
+
+
+    </script>
+<script src="{% static 'cal20/js/main.js' %}"></script>
+<script defer src="{% static 'cal20/file_2.js' %}" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon="{"rayId":"7c3fdedcde1e4ca1","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function () {
+    var toolbar = document.getElementsByClassName("fc-toolbar fc-header-toolbar")[0];
+    toolbar.setAttribute("style", "background-color: whitesmoke;padding-bottom: 20px;");
+
+    var current_day = {{current_day}};
+    var current_month = {{current_month}};
+    var current_year = {{current_year}};
+    
+    var prev_month_element = document.getElementsByClassName("fc-prev-button fc-button fc-button-primary")[0];
+    prev_month_element.addEventListener('click', function(x){
+      var prev_month = current_month-1;
+      if (prev_month==0){
+        prev_month = 12;
+        current_year = current_year - 1;
+      }
+      window.location.href=`{{refresh_url}}?month=${prev_month}&year=${current_year}&day=${current_day}`;
+    });
+  
+    var next_month_element = document.getElementsByClassName("fc-next-button fc-button fc-button-primary")[0];
+    next_month_element.addEventListener('click', function(x){
+      var next_month = current_month+1;
+      if (next_month==13){
+        next_month = 1;
+        current_year = current_year + 1;
+      }
+      window.location.href=`{{refresh_url}}?month=${next_month}&year=${current_year}&day=${current_day}`;
+    });
+
+    var today_element = document.getElementsByClassName("fc-today-button fc-button fc-button-primary");
+    today_element.addEventListener('click', function(x){
+      window.location.href=`{{refresh_url}}?month=${today_month}&year=${today_year}&day=${today_day}`;
+    });
+  });
+</script>
+{% endblock %}

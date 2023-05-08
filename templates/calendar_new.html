@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="{% static 'cal20/file_0.css' %}" rel="stylesheet">
+<link href="{% static 'cal20/file_1.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'cal20/fonts/icomoon/style.css' %}">
+<link href="{% static 'cal20/fullcalendar/packages/core/main.css' %}" rel="stylesheet" />
+<link href="{% static 'cal20/fullcalendar/packages/daygrid/main.css' %}" rel="stylesheet" />
+
+<link rel="stylesheet" href="{% static 'cal20/css/bootstrap.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'cal20/css/style.css' %}">
+<title>Calendar #10</title>
+</head>
+<body>
+    {% comment %} <h1>
+        
+        <img src="{% static 'cal20/{% static 'oprec.png' %}' %}" alt="My image">        
+    </h1> {% endcomment %}
+<div id="calendar-container">
+<div id="calendar"></div>
+</div>
+<script src="{% static 'cal20/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'cal20/js/popper.min.js' %}"></script>
+<script src="{% static 'cal20/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/core/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/interaction/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/daygrid/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/timegrid/main.js' %}"></script>
+<script src="{% static 'cal20/fullcalendar/packages/list/main.js' %}"></script>
+<script>
+      document.addEventListener("DOMContentLoaded", function() {
+    var calendarEl = document.getElementById("calendar");
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ "interaction", "dayGrid", "timeGrid", "list" ],
+      height: "parent",
+      header: {
+        left: "prev,next today",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+      },
+      defaultView: "dayGridMonth",
+      defaultDate: "2020-02-12",
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: "All Day Event",
+          start: "2020-02-01",
+        },
+        {
+          title: "Long Event",
+          start: "2020-02-07",
+          end: "2020-02-10"
+        },
+        {
+          groupId: 999,
+          title: "Repeating Event",
+          start: "2020-02-09T16:00:00"
+        },
+        {
+          groupId: 999,
+          title: "Repeating Event",
+          start: "2020-02-16T16:00:00"
+        },
+        {
+          title: "Conference",
+          start: "2020-02-11",
+          end: "2020-02-13"
+        },
+        {
+          title: "Meeting",
+          start: "2020-02-12T10:30:00",
+          end: "2020-02-12T12:30:00"
+        },
+        {
+          title: "Lunch",
+          start: "2020-02-12T12:00:00"
+        },
+        {
+          title: "Meeting",
+          start: "2020-02-12T14:30:00"
+        },
+        {
+          title: "Happy Hour",
+          start: "2020-02-12T17:30:00"
+        },
+        {
+          title: "Dinner",
+          start: "2020-02-12T20:00:00"
+        },
+        {
+          title: "Birthday Party",
+          start: "2020-02-13T07:00:00"
+        },
+        {
+          title: "Click for Google",
+          url: "http://google.com/",
+          start: "2020-02-28"
+        }
+      ]
+    });
+
+    calendar.render();
+  });
+
+    </script>
+<script src="{% static 'cal20/js/main.js' %}"></script>
+<script defer src="{% static 'cal20/file_2.css' %}" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon="{"rayId":"7c3fdedcde1e4ca1","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}" crossorigin="anonymous"></script>
+</body>
