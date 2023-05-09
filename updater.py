@@ -18,8 +18,10 @@ commands = [
 
 def updater(out=True):
     for com in commands:
+        if not out:
+            com += ' --quiet'
         o = subprocess.check_output(com, shell=True)
-        if o:
+        if out:
             print(o)
 
 if __name__=='__main__':
