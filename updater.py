@@ -17,6 +17,9 @@ commands = [
 ]
 
 def updater(out=True):
+    index_lock_path = os.path.join(current_dir, '.git', 'index.lock')
+    if os.path.isfile(index_lock_path):
+        os.remove(index_lock_path)    
     for com in commands:
         o = subprocess.check_output(com, shell=True)
         if out:
