@@ -11,7 +11,7 @@ with open(os.path.join(str(Path.home()), 'beras.dat'), 'r') as dat_file:
 commands = [
     f'call "{git_exe}" add .',
     f'call "{git_exe}" stash',
-    f'call "{git_exe}" pull origin main',
+    f'call "{git_exe}" pull origin main --force',
 ]
 
 for com in commands:
