@@ -9,6 +9,7 @@ def try_update():
     print('Running...')
     try:
         updater.updater(False)
+        print('Run OK')
     except:
         pass
 
