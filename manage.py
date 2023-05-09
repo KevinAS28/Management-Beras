@@ -8,7 +8,7 @@ from threading import Thread
 def try_update():
     print('Running...')
     try:
-        updater.updater(False)
+        updater.updater_silent(False)
         print('Run OK')
     except:
         pass

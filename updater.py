@@ -16,14 +16,20 @@ commands = [
     f'call "{git_exe}" pull origin main',
 ]
 
-def updater(out=True):
+def updater_verb():
     index_lock_path = os.path.join(current_dir, '.git', 'index.lock')
     if os.path.isfile(index_lock_path):
         os.remove(index_lock_path)    
     for com in commands:
-        o = subprocess.check_output(com, shell=True)
-        if out:
-            print(o)
+        print(subprocess.check_output(com, shell=True))
+
+
+def updater_silent():
+    index_lock_path = os.path.join(current_dir, '.git', 'index.lock')
+    if os.path.isfile(index_lock_path):
+        os.remove(index_lock_path)    
+    for com in commands:
+        subprocess.check_output(com, shell=True)
 
 if __name__=='__main__':
-    updater()
+    updater_verb()
