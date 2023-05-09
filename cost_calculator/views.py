@@ -388,7 +388,7 @@ def cost_calculator_monthly(request: WSGIRequest):
                 'url': f'/cost_calculator/daily?selected_dates={today_date_str}',
                 'start': f'{today_date_str}T08:00:00'
 
-            })            
+            })              
 
             #masukkan beras
             calendar_items.append({
