@@ -6,7 +6,7 @@ python_exe = os.path.join(current_dir, 'python', 'python.exe')
 
 with open('Updater.bat', 'w+') as updater_file:
     git_dir = os.path.join(current_dir, 'portablegit')
-    updater_content = f'''set gitdir={git_dir}\nset path=%gitdir%\cmd;%path%\ngit add beraspakde cost_calculator static templates create_shortcut.py get-pip.py install_run.py manage.py shell_module.py\npause'''    
+    updater_content = f'''set gitdir={git_dir}\nset path=%gitdir%\cmd;%path%\ngit add beraspakde cost_calculator static templates create_shortcut.py get-pip.py install_run.py manage.py shell_module.py\ngit stash\ngit pull origin main\npause'''    
     updater_file.write(updater_content)
 
 with open('Install.bat', 'w+') as install_file:
