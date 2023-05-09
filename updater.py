@@ -14,5 +14,9 @@ commands = [
     f'call "{git_exe}" pull origin main --force',
 ]
 
-for com in commands:
-    os.system(com)
+def updater():
+    for com in commands:
+        os.system(com)
+
+if __name__=='__main__':
+    updater()
