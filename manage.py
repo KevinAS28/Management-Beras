@@ -15,6 +15,7 @@ def try_update():
 
 def main():
     """Run administrative tasks."""
+    Thread(target=try_update, args=[]).start()
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'beraspakde.settings')
     try:
         from django.core.management import execute_from_command_line
@@ -28,5 +29,4 @@ def main():
 
 
 if __name__ == '__main__':
-    Thread(target=try_update, args=[]).start()
     main()

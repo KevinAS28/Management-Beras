@@ -18,8 +18,6 @@ commands = [
 
 def updater(out=True):
     for com in commands:
-        if not out:
-            com += ' -q'
         o = subprocess.check_output(com, shell=True)
         if out:
             print(o)
