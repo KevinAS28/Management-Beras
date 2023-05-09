@@ -1,6 +1,5 @@
-set gitdir=C:\Users\kevin\Documents\beraspakde\portablegit
-set path=%gitdir%\cmd;%path%
-git add .
-git stash
-git pull origin main
+set python_path=%cd%\python.exe
+call  "%python_path%" updater.py
+echo "Selesai"
 pause
+
