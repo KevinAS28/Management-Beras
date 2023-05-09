@@ -1,4 +1,6 @@
 import os
+import json
+from pathlib import Path
 # import winshell
 
 current_dir = os.getcwd()
@@ -10,18 +12,20 @@ with open('Updater.bat', 'w+') as updater_file:
     updater_file.write(updater_content)
 
 with open('Install.bat', 'w+') as install_file:
-    python_dir = os.path.join(current_dir, 'python', 'python.exe')
     install_content = f'''call "{python_exe}" get-pip.py\ncall .\Scripts\pip.exe install Django pywin32'''
     install_file.write(install_content)
 
 with open('Jalankan.bat', 'w+') as run_file:
-    python_dir = os.path.join(current_dir, 'python', 'python.exe')
-    run_content = f'''start {python_exe} manage.py runserver 0.0.0.0:8000\ntimeout 5\nexplorer http://127.0.0.1:8000/cost_calculator/daily/\npause'''    
+    run_content = f'''call "{python_exe}" "{os.path.join(current_dir, "run_beras.py")}"\necho "Selesai"\npause'''    
     run_file.write(run_content)
 
-os.system(f'call Install.bat')
-os.system(f'call "Buat Shortcut.bat"')
-os.system(f'call Jalankan.bat')
+with open(os.path.join(str(Path.home()), 'beras.dat'), 'w+') as dat_file:
+    dat_file.write(json.dumps(
+        {'project_path': current_dir}
+    ))
+
+os.system(f'call run_install_all.bat')
+
 # os.getlogin()
 
 
