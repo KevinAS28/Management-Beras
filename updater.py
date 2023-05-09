@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
+import subprocess
 import json
+
 
 with open(os.path.join(str(Path.home()), 'beras.dat'), 'r') as dat_file:
     dat = json.loads(dat_file.read())
@@ -14,9 +16,11 @@ commands = [
     f'call "{git_exe}" pull origin main --force',
 ]
 
-def updater():
+def updater(out=True):
     for com in commands:
-        os.system(com)
+        o = subprocess.check_output(com, shell=True)
+        if o:
+            print(o)
 
 if __name__=='__main__':
     updater()
