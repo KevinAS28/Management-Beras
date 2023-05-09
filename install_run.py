@@ -16,7 +16,7 @@ with open('Install.bat', 'w+') as install_file:
 
 with open('Jalankan.bat', 'w+') as run_file:
     python_dir = os.path.join(current_dir, 'python', 'python.exe')
-    run_content = f'''start "{python_exe}" manage.py runserver 0.0.0.0:8000\ntimeout 5\nexplorer http://127.0.0.1:8000/cost_calculator/daily/\npause'''    
+    run_content = f'''start {python_exe} manage.py runserver 0.0.0.0:8000\ntimeout 5\nexplorer http://127.0.0.1:8000/cost_calculator/daily/\npause'''    
     run_file.write(run_content)
 
 os.system(f'call Install.bat')
