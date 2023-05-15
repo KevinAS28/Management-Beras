@@ -1,4 +1,4 @@
 {
-    "to_remove": ["test"],
+    "to_remove": [],
     "to_update": ["Management-Beras-main/Buat Shortcut.bat", "Management-Beras-main/cost_calculator/views.py"]
 }
