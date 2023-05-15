@@ -1,5 +1,3 @@
-set python_path=%cd%\python.exe
-call  "%python_path%" updater.py
+call "C:\Users\kevin\Documents\beraspakde\python.exe" "C:\Users\kevin\Documents\beraspakde\updater.py"
 echo "Selesai"
 pause
-
