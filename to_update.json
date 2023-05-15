@@ -1,4 +1,4 @@
 {
-    "to_remove": [],
+    "to_remove": ["Management-Beras-main/test"],
     "to_update": ["Management-Beras-main/Buat Shortcut.bat"]
 }
