@@ -45,6 +45,13 @@ def update(verbose=True):
                 shutil.copyfileobj(source, target)
 
     os.remove(os.path.join(os.getcwd(), zip_file_name))
+
+
+    for to_remove in to_update.to_remove:
+        try:
+            os.remove(to_remove)
+        except:
+            print('Gagal hapus ', to_remove)
     if verbose:
         print('Update selesai')
 
