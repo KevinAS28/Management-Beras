@@ -22,7 +22,6 @@ item_inputs = ['Jumlah unit','Harga per unit', 'Biaya total', '_']
 
 
 class CostItemToday:
-    
     def __init__(self, the_date):
         self.cd = the_date
     
